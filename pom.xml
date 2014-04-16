@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ext.deployit.datapower</groupId>
+	<artifactId>datapower-plugin</artifactId>
+	<version>3.9.4-001</version>
+	<packaging>jar</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<deployit.server.home>/opt/deployit-3.9.4-server</deployit.server.home>
+		<deployit.api.version>3.9.4</deployit.api.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.xebialabs.deployit</groupId>
+			<artifactId>udm-plugin-api</artifactId>
+			<version>${deployit.api.version}</version>
+			<scope>system</scope>
+			<systemPath>${deployit.server.home}/lib/udm-plugin-api-${deployit.api.version}.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.xebialabs.deployit</groupId>
+			<artifactId>remoting-plugin</artifactId>
+			<version>${deployit.api.version}</version>
+			<scope>system</scope>
+			<systemPath>${deployit.server.home}/lib/remoting-plugin-${deployit.api.version}.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.xebialabs.deployit</groupId>
+			<artifactId>jee-plugin</artifactId>
+			<version>${deployit.api.version}</version>
+			<scope>system</scope>
+			<systemPath>${deployit.server.home}/lib/jee-plugin-${deployit.api.version}.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.xebialabs.deployit</groupId>
+			<artifactId>python-plugin</artifactId>
+			<version>${deployit.api.version}</version>
+			<scope>system</scope>
+			<systemPath>${deployit.server.home}/lib/python-plugin-${deployit.api.version}.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.xebialabs.deployit</groupId>
+			<artifactId>generic-plugin</artifactId>
+			<version>${deployit.api.version}</version>
+			<scope>system</scope>
+			<systemPath>${deployit.server.home}/lib/generic-plugin-${deployit.api.version}.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>13.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.xebialabs.overthere</groupId>
+			<artifactId>overthere</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+		<!-- exclude the tests for now -->
+		<testSourceDirectory>test</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/scripts</directory>
+			</resource>
+		</resources>
+	</build>
+
+</project>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.xebialabs.com/deployit/synthetic"
+           xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+
+   <!-- The DataPower domain that Services can be deployed to -->
+   <type type="datapower.Domain" extends="generic.Container" description="DataPower Domain">
+      <property name="managementUrl" required="true" />
+      <property name="username" required="true" />
+      <property name="password" required="true" password="true" />
+   </type>
+
+   <!-- Koppelpunt config -->
+   <type type="il.KoppelpuntSpec" extends="generic.ExecutedScript" deployable-type="il.Koppelpunt" description="DataPower Service configuration file" container-type="datapower.Domain">
+      <property name="configDir" kind="string" required="true" />
+      <property name="createVerb" default="Deploy" hidden="true" />
+      <property name="destroyVerb" default="Remove" hidden="true" />
+      <property name="targetDirectory" description="Target directory name" default="/tmp/${deployed.name}" hidden="true" />
+      <property name="restartRequired" kind="boolean" required="false" default="false" hidden="true" />
+      <property name="createTargetDirectory" default="true" hidden="true" kind="boolean" />
+      <property name="targetDirectoryShared" default="true" hidden="true" kind="boolean" />
+      <property name="scanPlaceholders" default="true" hidden="true" kind="boolean" />
+      <property name="createScript" default="datapower/install_koppelpunt.sh" hidden="true" />
+      <property name="destroyScript" default="datapower/uninstall_koppelpunt.sh" hidden="true" />
+   </type>
+
+   <type type="il.Koppelpunt" extends="generic.Folder">
+      <property name="configDir" kind="string" required="true" />
+   </type>
+
+</synthetic>
